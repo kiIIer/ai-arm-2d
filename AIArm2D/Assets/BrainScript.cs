@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
+using Unity.MLAgents.Policies;
 using Unity.MLAgents.Sensors;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -26,32 +27,32 @@ public class BrainScript : Agent
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         var continuousActions = actionsOut.ContinuousActions;
-        if (Input.GetKey("1"))
+        if (Input.GetKey("z"))
         {
             continuousActions[0] = -1;
         }
 
-        if (Input.GetKey("2"))
+        if (Input.GetKey("x"))
         {
             continuousActions[0] = 1;
         }
 
-        if (Input.GetKey("3"))
+        if (Input.GetKey("a"))
         {
             continuousActions[1] = -1;
         }
 
-        if (Input.GetKey("4"))
+        if (Input.GetKey("s"))
         {
             continuousActions[1] = 1;
         }
 
-        if (Input.GetKey("5"))
+        if (Input.GetKey("q"))
         {
             continuousActions[2] = -1;
         }
 
-        if (Input.GetKey("6"))
+        if (Input.GetKey("w"))
         {
             continuousActions[2] = 1;
         }
@@ -113,6 +114,16 @@ public class BrainScript : Agent
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey("n"))
+        {
+            gameObject.GetComponent<BehaviorParameters>().BehaviorType = BehaviorType.Default;
+        }
+
+        if (Input.GetKey("m"))
+        {
+            gameObject.GetComponent<BehaviorParameters>().BehaviorType = BehaviorType.HeuristicOnly;
+        }
+
         RequestDecision();
     }
 }
